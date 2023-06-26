@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <title>Audio Streaming Example</title>
+</head>
+<body>
+  <audio id="audioPlayer" controls></audio>
+
+  <script>
+      const audioPlayer = document.getElementById('audioPlayer');
+  
+    // Fetch the audio stream URL from the server
+    fetch('/audio')
+        .then(response => response.blob())
+        .then(blob => {
+        // Create a blob URL for the audio stream
+        const audioStreamUrl = URL.createObjectURL(blob);
+        
+        // Set the audio source to the stream URL
+        audioPlayer.src = audioStreamUrl;
+        })
+        .catch(error => {
+        console.error('Failed to fetch audio stream:', error);
+        });
+  </script>
+</body>
+</html>
